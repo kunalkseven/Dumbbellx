@@ -887,17 +887,17 @@ export default function Home() {
     ex.name.toLowerCase().includes(exSearchQuery.toLowerCase()) ||
     ex.muscle.toLowerCase().includes(exSearchQuery.toLowerCase())
   );
-  
+
   // ── Premium landing page when not signed in ────────────────────
 
   if (!isSignedIn) {
     const features = [
-      { icon: <Trophy style={{width:'14px',height:'14px',color:'#fbbf24'}}/>, label:'PR Tracking' },
-      { icon: <ChartIcon style={{width:'14px',height:'14px',color:'#22d3ee'}}/>, label:'Analytics' },
-      { icon: <RefreshCw style={{width:'14px',height:'14px',color:'#34d399'}}/>, label:'Cloud Sync' },
-      { icon: <ClipboardList style={{width:'14px',height:'14px',color:'#a78bfa'}}/>, label:'Workout Plans' },
-      { icon: <Activity style={{width:'14px',height:'14px',color:'#f472b6'}}/>, label:'Live Tracker' },
-      { icon: <Flame style={{width:'14px',height:'14px',color:'#fb923c'}}/>, label:'Streak System' },
+      { icon: <Trophy style={{ width: '14px', height: '14px', color: '#fbbf24' }} />, label: 'PR Tracking' },
+      { icon: <ChartIcon style={{ width: '14px', height: '14px', color: '#22d3ee' }} />, label: 'Analytics' },
+      { icon: <RefreshCw style={{ width: '14px', height: '14px', color: '#34d399' }} />, label: 'Cloud Sync' },
+      { icon: <ClipboardList style={{ width: '14px', height: '14px', color: '#a78bfa' }} />, label: 'Workout Plans' },
+      { icon: <Activity style={{ width: '14px', height: '14px', color: '#f472b6' }} />, label: 'Live Tracker' },
+      { icon: <Flame style={{ width: '14px', height: '14px', color: '#fb923c' }} />, label: 'Streak System' },
     ];
     return (
       <>
@@ -938,44 +938,44 @@ export default function Home() {
           {/* LEFT — branding */}
           <div id="lp-left">
             {/* Logo */}
-            <div style={{display:'flex',alignItems:'center',gap:'0.8rem',marginBottom:'2.25rem'}}>
-              <div style={{background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',borderRadius:'14px',padding:'0.65rem',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 30px rgba(139,92,246,0.45)'}}>
-                <Dumbbell style={{width:'26px',height:'26px',color:'white'}} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2.25rem' }}>
+              <div style={{ background: 'linear-gradient(135deg,#8b5cf6,#06b6d4)', borderRadius: '14px', padding: '0.65rem', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 30px rgba(139,92,246,0.45)' }}>
+                <Dumbbell style={{ width: '26px', height: '26px', color: 'white' }} />
               </div>
-              <span style={{fontFamily:'var(--font-display)',fontSize:'1.6rem',fontWeight:800,background:'linear-gradient(135deg,#fff 40%,#8b5cf6)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',letterSpacing:'-0.02em'}}>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 800, background: 'linear-gradient(135deg,#fff 40%,#8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.02em' }}>
                 DUMBBELLX
               </span>
             </div>
 
             {/* Headline */}
-            <h1 style={{fontFamily:'var(--font-display)',fontSize:'clamp(1.9rem,4.5vw,3.2rem)',fontWeight:800,lineHeight:1.1,marginBottom:'1rem'}}>
-              <span style={{background:'linear-gradient(135deg,#fff 50%,rgba(255,255,255,0.55))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.9rem,4.5vw,3.2rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '1rem' }}>
+              <span style={{ background: 'linear-gradient(135deg,#fff 50%,rgba(255,255,255,0.55))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Train Smarter.<br />Break Every&nbsp;
               </span>
-              <span style={{background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Record.</span>
+              <span style={{ background: 'linear-gradient(135deg,#8b5cf6,#06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Record.</span>
             </h1>
-            <p style={{fontSize:'0.95rem',color:'var(--text-secondary)',lineHeight:1.8,marginBottom:'1.75rem',maxWidth:'400px'}}>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1.75rem', maxWidth: '400px' }}>
               Log workouts, track PRs, visualise your gains — all in one premium fitness tracker.
             </p>
 
             {/* CTA buttons */}
             <div id="lp-cta">
               <SignInButton mode="modal">
-                <button style={{display:'inline-flex',alignItems:'center',gap:'0.5rem',background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',color:'white',border:'none',cursor:'pointer',padding:'0.8rem 1.75rem',borderRadius:'50px',fontSize:'0.95rem',fontFamily:'var(--font-display)',fontWeight:700,boxShadow:'0 8px 28px rgba(139,92,246,0.4)'}}>
-                  <LogIn style={{width:'16px',height:'16px'}} /> Sign In
+                <button style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'linear-gradient(135deg,#8b5cf6,#06b6d4)', color: 'white', border: 'none', cursor: 'pointer', padding: '0.8rem 1.75rem', borderRadius: '50px', fontSize: '0.95rem', fontFamily: 'var(--font-display)', fontWeight: 700, boxShadow: '0 8px 28px rgba(139,92,246,0.4)' }}>
+                  <LogIn style={{ width: '16px', height: '16px' }} /> Sign In
                 </button>
               </SignInButton>
               <SignUpButton mode="modal">
-                <button style={{display:'inline-flex',alignItems:'center',gap:'0.5rem',background:'rgba(255,255,255,0.05)',color:'var(--text-primary)',border:'1px solid rgba(255,255,255,0.12)',cursor:'pointer',padding:'0.8rem 1.75rem',borderRadius:'50px',fontSize:'0.95rem',fontFamily:'var(--font-display)',fontWeight:600}}>
-                  <Sparkles style={{width:'16px',height:'16px'}} /> Sign Up Free
+                <button style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--text-primary)', border: '1px solid rgba(255,255,255,0.12)', cursor: 'pointer', padding: '0.8rem 1.75rem', borderRadius: '50px', fontSize: '0.95rem', fontFamily: 'var(--font-display)', fontWeight: 600 }}>
+                  <Sparkles style={{ width: '16px', height: '16px' }} /> Sign Up Free
                 </button>
               </SignUpButton>
             </div>
 
             {/* Feature grid */}
             <div id="lp-features">
-              {features.map(({icon, label}) => (
-                <div key={label} style={{display:'flex',alignItems:'center',gap:'0.5rem',background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:'10px',padding:'0.55rem 0.85rem',fontSize:'0.8rem',color:'var(--text-secondary)',fontFamily:'var(--font-display)',fontWeight:500}}>
+              {features.map(({ icon, label }) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '0.55rem 0.85rem', fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-display)', fontWeight: 500 }}>
                   {icon} {label}
                 </div>
               ))}
@@ -985,40 +985,40 @@ export default function Home() {
           {/* RIGHT — auth card */}
           <div id="lp-right">
             <div id="lp-card">
-              <h2 style={{fontFamily:'var(--font-display)',fontSize:'1.3rem',fontWeight:700,marginBottom:'0.3rem',color:'#f8fafc',textAlign:'center'}}>Welcome Back</h2>
-              <p style={{fontSize:'0.82rem',color:'var(--text-secondary)',marginBottom:'1.5rem',textAlign:'center'}}>Sign in to continue to Dumbbellx</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.3rem', color: '#f8fafc', textAlign: 'center' }}>Welcome Back</h2>
+              <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', textAlign: 'center' }}>Sign in to continue to Dumbbellx</p>
 
               {/* Google */}
               <SignInButton mode="modal">
-                <button style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'0.7rem',width:'100%',background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'12px',padding:'0.8rem',color:'var(--text-primary)',cursor:'pointer',fontFamily:'var(--font-display)',fontWeight:600,fontSize:'0.875rem',marginBottom:'1rem',boxSizing:'border-box'}}>
-                  <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 6.293C4.672 4.166 6.656 3.58 9 3.58z"/></svg>
+                <button style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.7rem', width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.8rem', color: 'var(--text-primary)', cursor: 'pointer', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.875rem', marginBottom: '1rem', boxSizing: 'border-box' }}>
+                  <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" /><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" /><path fill="#FBBC05" d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z" /><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 6.293C4.672 4.166 6.656 3.58 9 3.58z" /></svg>
                   Continue with Google
                 </button>
               </SignInButton>
 
-              <div style={{display:'flex',alignItems:'center',gap:'0.6rem',marginBottom:'1rem'}}>
-                <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.07)'}} />
-                <span style={{fontSize:'0.72rem',color:'var(--text-muted)'}}>or</span>
-                <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.07)'}} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
+                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.07)' }} />
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>or</span>
+                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.07)' }} />
               </div>
 
-              <label style={{display:'block',fontSize:'0.78rem',color:'var(--text-secondary)',marginBottom:'0.35rem',fontFamily:'var(--font-display)',fontWeight:500}}>Email address</label>
+              <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontFamily: 'var(--font-display)', fontWeight: 500 }}>Email address</label>
               <SignInButton mode="modal">
-                <div style={{width:'100%',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.09)',borderRadius:'10px',padding:'0.75rem 1rem',color:'rgba(148,163,184,0.5)',fontSize:'0.875rem',cursor:'pointer',marginBottom:'1rem',boxSizing:'border-box'}}>
+                <div style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.09)', borderRadius: '10px', padding: '0.75rem 1rem', color: 'rgba(148,163,184,0.5)', fontSize: '0.875rem', cursor: 'pointer', marginBottom: '1rem', boxSizing: 'border-box' }}>
                   Enter your email address
                 </div>
               </SignInButton>
 
               <SignInButton mode="modal">
-                <button style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',color:'white',border:'none',cursor:'pointer',padding:'0.85rem',borderRadius:'12px',fontFamily:'var(--font-display)',fontWeight:700,fontSize:'0.9rem',boxShadow:'0 4px 20px rgba(139,92,246,0.35)',marginBottom:'1.25rem',boxSizing:'border-box'}}>
+                <button style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', background: 'linear-gradient(135deg,#8b5cf6,#06b6d4)', color: 'white', border: 'none', cursor: 'pointer', padding: '0.85rem', borderRadius: '12px', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9rem', boxShadow: '0 4px 20px rgba(139,92,246,0.35)', marginBottom: '1.25rem', boxSizing: 'border-box' }}>
                   Continue ▶
                 </button>
               </SignInButton>
 
-              <p style={{textAlign:'center',fontSize:'0.8rem',color:'var(--text-muted)',margin:0}}>
+              <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
                 No account?&nbsp;
                 <SignUpButton mode="modal">
-                  <button style={{color:'#a78bfa',fontWeight:600,background:'none',border:'none',cursor:'pointer',padding:0,fontFamily:'var(--font-display)',fontSize:'0.8rem'}}>Sign up free</button>
+                  <button style={{ color: '#a78bfa', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'var(--font-display)', fontSize: '0.8rem' }}>Sign up free</button>
                 </SignUpButton>
               </p>
             </div>
@@ -1949,7 +1949,7 @@ export default function Home() {
             </div>
 
             {!selectedPlanModal.exercises && (
-              <button className="action-btn btn-primary" onClick={() => { store.setActivePlanId(selectedPlanModal.id); setActivePlanId(selectedPlanModal.id); setSelectedPlanModal(null); renderDashboard(); }}>
+              <button className="action-btn btn-primary" onClick={() => { store.setActivePlanId(selectedPlanModal.id); setActivePlanId(selectedPlanModal.id); setSelectedPlanModal(null); setActiveTab('dashboard'); }}>
                 <Sparkles style={{ marginRight: '0.5rem' }} /> Set as Active Routine
               </button>
             )}
