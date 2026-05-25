@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useAuth, useUser } from '@clerk/nextjs';
+import { useAuth, useUser, SignInButton, SignUpButton } from '@clerk/nextjs';
 import { store } from '@/lib/store';
 import { exerciseDatabase } from '@/lib/exercises';
 import { defaultTemplates } from '@/lib/default_workout_plane';
@@ -889,8 +889,6 @@ export default function Home() {
   );
   
   // ── Premium landing page when not signed in ────────────────────
-  const CLERK_SIGN_IN = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL || 'https://many-scorpion-59.accounts.dev/sign-in';
-  const CLERK_SIGN_UP = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL || 'https://many-scorpion-59.accounts.dev/sign-up';
 
   if (!isSignedIn) {
     const features = [
@@ -962,12 +960,16 @@ export default function Home() {
 
             {/* CTA buttons */}
             <div id="lp-cta">
-              <a href={CLERK_SIGN_IN} style={{display:'inline-flex',alignItems:'center',gap:'0.5rem',background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',color:'white',textDecoration:'none',padding:'0.8rem 1.75rem',borderRadius:'50px',fontSize:'0.95rem',fontFamily:'var(--font-display)',fontWeight:700,boxShadow:'0 8px 28px rgba(139,92,246,0.4)'}}>
-                <LogIn style={{width:'16px',height:'16px'}} /> Sign In
-              </a>
-              <a href={CLERK_SIGN_UP} style={{display:'inline-flex',alignItems:'center',gap:'0.5rem',background:'rgba(255,255,255,0.05)',color:'var(--text-primary)',textDecoration:'none',padding:'0.8rem 1.75rem',borderRadius:'50px',fontSize:'0.95rem',fontFamily:'var(--font-display)',fontWeight:600,border:'1px solid rgba(255,255,255,0.12)'}}>
-                <Sparkles style={{width:'16px',height:'16px'}} /> Sign Up Free
-              </a>
+              <SignInButton mode="modal">
+                <button style={{display:'inline-flex',alignItems:'center',gap:'0.5rem',background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',color:'white',border:'none',cursor:'pointer',padding:'0.8rem 1.75rem',borderRadius:'50px',fontSize:'0.95rem',fontFamily:'var(--font-display)',fontWeight:700,boxShadow:'0 8px 28px rgba(139,92,246,0.4)'}}>
+                  <LogIn style={{width:'16px',height:'16px'}} /> Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button style={{display:'inline-flex',alignItems:'center',gap:'0.5rem',background:'rgba(255,255,255,0.05)',color:'var(--text-primary)',border:'1px solid rgba(255,255,255,0.12)',cursor:'pointer',padding:'0.8rem 1.75rem',borderRadius:'50px',fontSize:'0.95rem',fontFamily:'var(--font-display)',fontWeight:600}}>
+                  <Sparkles style={{width:'16px',height:'16px'}} /> Sign Up Free
+                </button>
+              </SignUpButton>
             </div>
 
             {/* Feature grid */}
@@ -987,10 +989,12 @@ export default function Home() {
               <p style={{fontSize:'0.82rem',color:'var(--text-secondary)',marginBottom:'1.5rem',textAlign:'center'}}>Sign in to continue to Dumbbellx</p>
 
               {/* Google */}
-              <a href={CLERK_SIGN_IN} style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'0.7rem',width:'100%',background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'12px',padding:'0.8rem',color:'var(--text-primary)',textDecoration:'none',fontFamily:'var(--font-display)',fontWeight:600,fontSize:'0.875rem',marginBottom:'1rem',boxSizing:'border-box'}}>
-                <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 6.293C4.672 4.166 6.656 3.58 9 3.58z"/></svg>
-                Continue with Google
-              </a>
+              <SignInButton mode="modal">
+                <button style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'0.7rem',width:'100%',background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'12px',padding:'0.8rem',color:'var(--text-primary)',cursor:'pointer',fontFamily:'var(--font-display)',fontWeight:600,fontSize:'0.875rem',marginBottom:'1rem',boxSizing:'border-box'}}>
+                  <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 6.293C4.672 4.166 6.656 3.58 9 3.58z"/></svg>
+                  Continue with Google
+                </button>
+              </SignInButton>
 
               <div style={{display:'flex',alignItems:'center',gap:'0.6rem',marginBottom:'1rem'}}>
                 <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.07)'}} />
@@ -999,17 +1003,23 @@ export default function Home() {
               </div>
 
               <label style={{display:'block',fontSize:'0.78rem',color:'var(--text-secondary)',marginBottom:'0.35rem',fontFamily:'var(--font-display)',fontWeight:500}}>Email address</label>
-              <div onClick={() => window.location.href = CLERK_SIGN_IN} style={{width:'100%',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.09)',borderRadius:'10px',padding:'0.75rem 1rem',color:'rgba(148,163,184,0.5)',fontSize:'0.875rem',cursor:'text',marginBottom:'1rem',boxSizing:'border-box'}}>
-                Enter your email address
-              </div>
+              <SignInButton mode="modal">
+                <div style={{width:'100%',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.09)',borderRadius:'10px',padding:'0.75rem 1rem',color:'rgba(148,163,184,0.5)',fontSize:'0.875rem',cursor:'pointer',marginBottom:'1rem',boxSizing:'border-box'}}>
+                  Enter your email address
+                </div>
+              </SignInButton>
 
-              <a href={CLERK_SIGN_IN} style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',color:'white',textDecoration:'none',padding:'0.85rem',borderRadius:'12px',fontFamily:'var(--font-display)',fontWeight:700,fontSize:'0.9rem',boxShadow:'0 4px 20px rgba(139,92,246,0.35)',marginBottom:'1.25rem',boxSizing:'border-box'}}>
-                Continue ▶
-              </a>
+              <SignInButton mode="modal">
+                <button style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',background:'linear-gradient(135deg,#8b5cf6,#06b6d4)',color:'white',border:'none',cursor:'pointer',padding:'0.85rem',borderRadius:'12px',fontFamily:'var(--font-display)',fontWeight:700,fontSize:'0.9rem',boxShadow:'0 4px 20px rgba(139,92,246,0.35)',marginBottom:'1.25rem',boxSizing:'border-box'}}>
+                  Continue ▶
+                </button>
+              </SignInButton>
 
               <p style={{textAlign:'center',fontSize:'0.8rem',color:'var(--text-muted)',margin:0}}>
                 No account?&nbsp;
-                <a href={CLERK_SIGN_UP} style={{color:'#a78bfa',fontWeight:600,textDecoration:'none'}}>Sign up free</a>
+                <SignUpButton mode="modal">
+                  <button style={{color:'#a78bfa',fontWeight:600,background:'none',border:'none',cursor:'pointer',padding:0,fontFamily:'var(--font-display)',fontSize:'0.8rem'}}>Sign up free</button>
+                </SignUpButton>
               </p>
             </div>
           </div>
@@ -1063,9 +1073,11 @@ export default function Home() {
               </button>
             </div>
           ) : (
-            <button className="action-btn btn-primary btn-small" onClick={() => window.location.href = 'https://many-scorpion-59.accounts.dev/sign-in'}>
-              <LogIn style={{ width: '14px', height: '14px', marginRight: '0.5rem' }} /> Sign In to Sync
-            </button>
+            <SignInButton mode="modal">
+              <button className="action-btn btn-primary btn-small">
+                <LogIn style={{ width: '14px', height: '14px', marginRight: '0.5rem' }} /> Sign In to Sync
+              </button>
+            </SignInButton>
           )}
         </div>
       </aside>
@@ -1122,9 +1134,11 @@ export default function Home() {
                     </button>
                   </div>
                 ) : (
-                  <button className="action-btn btn-secondary btn-small" onClick={() => window.Clerk.openSignIn()} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', borderRadius: '20px', width: 'auto' }}>
-                    <LogIn style={{ width: '12px', height: '12px', marginRight: '0.35rem' }} /> Sign In
-                  </button>
+                  <SignInButton mode="modal">
+                    <button className="action-btn btn-secondary btn-small" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', borderRadius: '20px', width: 'auto' }}>
+                      <LogIn style={{ width: '12px', height: '12px', marginRight: '0.35rem' }} /> Sign In
+                    </button>
+                  </SignInButton>
                 )}
                 <div className="streak-indicator">
                   <Flame />
