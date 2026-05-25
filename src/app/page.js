@@ -38,7 +38,8 @@ import {
   Sparkles,
   LogIn,
   LogOut,
-  RefreshCw
+  RefreshCw,
+  Info
 } from 'lucide-react';
 
 export default function Home() {
@@ -86,6 +87,9 @@ export default function Home() {
   const [summaryStats, setSummaryStats] = useState({ duration: 0, sets: 0, volume: 0, shatteredPrs: [] });
   const [isExercisePickerOpen, setIsExercisePickerOpen] = useState(false);
   const [exSearchQuery, setExSearchQuery] = useState('');
+  const [selectedLibraryExercise, setSelectedLibraryExercise] = useState(null);
+  const [libraryFilter, setLibraryFilter] = useState('All');
+  const [librarySearchQuery, setLibrarySearchQuery] = useState('');
 
   // Floating Rest Timer State
   const [restTimer, setRestTimer] = useState({ active: false, secondsLeft: 0, totalSeconds: 0 });
@@ -1051,6 +1055,9 @@ export default function Home() {
             <li className={`nav-item ${activeTab === 'analytics' ? 'active' : ''}`}>
               <button onClick={() => setActiveTab('analytics')}><ChartIcon />Analytics & History</button>
             </li>
+            <li className={`nav-item ${activeTab === 'library' ? 'active' : ''}`}>
+              <button onClick={() => setActiveTab('library')}><Database />Exercise Library</button>
+            </li>
             <li className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}>
               <button onClick={() => setActiveTab('settings')}><SettingsIcon />Settings</button>
             </li>
@@ -1098,6 +1105,10 @@ export default function Home() {
         <button className={`mobile-nav-item ${activeTab === 'analytics' ? 'active' : ''}`} onClick={() => setActiveTab('analytics')}>
           <ChartIcon />
           <span>History</span>
+        </button>
+        <button className={`mobile-nav-item ${activeTab === 'library' ? 'active' : ''}`} onClick={() => setActiveTab('library')}>
+          <Database />
+          <span>Library</span>
         </button>
         <button className={`mobile-nav-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>
           <SettingsIcon />
@@ -1502,9 +1513,20 @@ export default function Home() {
                     return (
                       <div className="exercise-track-card" key={exIdx}>
                         <div className="exercise-track-header">
-                          <div className="exercise-track-title">
+                          <div 
+                            className="exercise-track-title"
+                            style={{ cursor: 'pointer' }}
+                            title="View Exercise Details"
+                            onClick={() => {
+                              const libraryEx = exerciseDatabase.find(e => e.name.toLowerCase() === ex.exerciseName.toLowerCase());
+                              if (libraryEx) {
+                                setSelectedLibraryExercise(libraryEx);
+                              }
+                            }}
+                          >
                             <Award style={{ color: 'var(--color-primary)' }} />
-                            <span>{ex.exerciseName}</span>
+                            <span style={{ textDecoration: 'underline', textUnderlineOffset: '2px', textDecorationColor: 'var(--text-muted)' }}>{ex.exerciseName}</span>
+                            <Info size={16} style={{ color: 'var(--text-muted)', marginLeft: '4px' }} />
                           </div>
                           <span className="badge badge-purple" style={{ fontSize: '0.65rem' }}>{ex.muscleGroup}</span>
                         </div>
@@ -1749,7 +1771,72 @@ export default function Home() {
           </section>
         )}
 
-        {/* 5. SETTINGS TAB */}
+        {/* 5. LIBRARY TAB */}
+        {activeTab === 'library' && (
+          <section id="view-library" className="view-section active">
+            <div className="header-bar">
+              <div className="user-welcome">
+                <h1>Exercise Library</h1>
+                <p>Browse detailed instructions and targeted muscles for all exercises.</p>
+              </div>
+            </div>
+
+            <div className="library-filters" style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '1rem', marginBottom: '1rem', alignItems: 'center' }}>
+              <input
+                type="text"
+                placeholder="Search exercises..."
+                value={librarySearchQuery}
+                onChange={(e) => setLibrarySearchQuery(e.target.value)}
+                style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '20px',
+                  border: '1px solid var(--border-color)',
+                  backgroundColor: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  flexShrink: 0,
+                  minWidth: '200px'
+                }}
+              />
+              {['All', 'chest', 'back', 'shoulders', 'quads', 'hamstrings', 'glutes', 'biceps', 'triceps', 'calves', 'core'].map(muscle => (
+                <button
+                  key={muscle}
+                  className={`btn ${libraryFilter === muscle ? 'btn-primary' : 'btn-secondary'}`}
+                  style={{ borderRadius: '20px', padding: '0.4rem 1rem', textTransform: 'capitalize', whiteSpace: 'nowrap', flexShrink: 0 }}
+                  onClick={() => setLibraryFilter(muscle)}
+                >
+                  {muscle}
+                </button>
+              ))}
+            </div>
+
+            <div className="library-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
+              {exerciseDatabase
+                .filter(ex => {
+                  const matchesFilter = libraryFilter === 'All' || ex.muscle === libraryFilter;
+                  const matchesSearch = ex.name.toLowerCase().includes(librarySearchQuery.toLowerCase());
+                  return matchesFilter && matchesSearch;
+                })
+                .map(ex => (
+                  <div 
+                    key={ex.id} 
+                    className="plan-card" 
+                    style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}
+                    onClick={() => setSelectedLibraryExercise(ex)}
+                  >
+                    <div className="plan-header">
+                      <h3 style={{ fontSize: '1.1rem' }}>{ex.name}</h3>
+                      <span className="difficulty-badge beginner">{ex.muscle}</span>
+                    </div>
+                    <div style={{ marginTop: '0.5rem', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1 }}>
+                      {ex.notes}
+                    </div>
+                  </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 6. SETTINGS TAB */}
         {activeTab === 'settings' && (
           <section id="view-settings" className="view-section active">
             <div className="header-bar">
@@ -1889,6 +1976,47 @@ export default function Home() {
             <button className="rest-ctrl-btn" onClick={() => setRestTimer(prev => ({ ...prev, secondsLeft: Math.max(5, prev.secondsLeft - 30) }))}>-30s</button>
             <button className="rest-ctrl-btn" onClick={() => setRestTimer(prev => ({ ...prev, secondsLeft: prev.secondsLeft + 30, totalSeconds: prev.totalSeconds + 30 }))}>+30s</button>
             <button className="rest-ctrl-btn skip" onClick={() => setRestTimer(prev => ({ ...prev, secondsLeft: 0 }))}>Skip</button>
+          </div>
+        </div>
+      )}
+
+      {/* EXERCISE LIBRARY MODAL */}
+      {selectedLibraryExercise && (
+        <div className="modal-overlay active" style={{ display: 'flex' }}>
+          <div className="modal-content" style={{ maxWidth: '500px', overflowY: 'auto', maxHeight: '90vh' }}>
+            <button className="close-modal" onClick={() => setSelectedLibraryExercise(null)}><X /></button>
+            
+            {selectedLibraryExercise.mediaUrl && (
+              <div style={{ marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden', backgroundColor: 'var(--bg-secondary)', display: 'flex', justifyContent: 'center' }}>
+                <img 
+                  src={selectedLibraryExercise.mediaUrl} 
+                  alt={selectedLibraryExercise.name} 
+                  style={{ maxWidth: '100%', height: 'auto', display: 'block' }} 
+                />
+              </div>
+            )}
+            
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+              <h2 className="modal-title" style={{ marginBottom: 0 }}>{selectedLibraryExercise.name}</h2>
+              <span className="difficulty-badge beginner">{selectedLibraryExercise.muscle}</span>
+            </div>
+            
+            <p className="modal-desc" style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontStyle: 'italic' }}>
+              {selectedLibraryExercise.notes}
+            </p>
+
+            {selectedLibraryExercise.detailedInstructions && (
+              <div className="exercise-instructions">
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
+                  How to perform
+                </h3>
+                <ol style={{ paddingLeft: '1.2rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {selectedLibraryExercise.detailedInstructions.map((step, idx) => (
+                    <li key={idx} style={{ lineHeight: '1.5' }}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
           </div>
         </div>
       )}
