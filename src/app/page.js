@@ -1110,14 +1110,17 @@ export default function Home() {
           <Database />
           <span>Library</span>
         </button>
-        <button className={`mobile-nav-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>
-          <SettingsIcon />
-          <span>Settings</span>
-        </button>
       </nav>
 
       {/* MAIN CONTENT WRAPPER */}
       <main className="main-content">
+        <button 
+          className="mobile-settings-btn"
+          onClick={() => setActiveTab('settings')}
+          style={{ display: 'none' }} /* toggled via css media query */
+        >
+          <SettingsIcon size={20} />
+        </button>
 
         {/* 1. DASHBOARD TAB */}
         {activeTab === 'dashboard' && (
